@@ -12,6 +12,7 @@ public class Constants {
 
     public class SharedPreferencesTags {
         public final static String AlarmManagerTime = "AlarmManagerTime";
+        public static final String CellsData = "CellsData";
     }
 
     public class RoomTags {
@@ -21,7 +22,14 @@ public class Constants {
         public final static String ZekrCountCol = "ZekrCountCol";
         public final static String ZekrInfoCol = "ZekrInfoCol";
         public final static String ZekrCategory = "ZekrCategory";
-        public final static String ZekrId="ZekrId";
+        public final static String ZekrId = "ZekrId";
 
+    }
+
+    public class CellsType {
+        public static final int TYPE_SALAH = 1;
+        public static final int TYPE_ZEKR = 2;
+        public static final int TYPE_QOUR2AN = 3;
+        public static final int TYPE_SEYAM = 4;
     }
 }

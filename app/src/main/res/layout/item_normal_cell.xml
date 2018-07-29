@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_normal_cell_view"
+    android:layout_width="@dimen/room_status_cell_length"
+    android:layout_height="@dimen/room_status_cell_length">
+<View
+    android:background="@drawable/black_border"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+</RelativeLayout>

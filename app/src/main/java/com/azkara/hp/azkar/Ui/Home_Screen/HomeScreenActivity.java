@@ -17,7 +17,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         AllAzkarReprosatory reprosatory = new AllAzkarReprosatory(getApplication());
         reprosatory.getAllAzkarElMoslem().observe(this, new Observer<List<AzkarElMoslem>>() {
             @Override

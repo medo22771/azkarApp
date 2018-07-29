@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/row_height"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/txtTaskName"
+        android:layout_width="@dimen/cell_width"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/black_border"
+        android:id="@+id/txtSaturday"
+        android:layout_width="@dimen/cell_width"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/margin"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/black_border"
+        android:id="@+id/txtSunday"
+        android:layout_width="@dimen/cell_width"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/margin"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <!--<TextView-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--android:layout_marginBottom="4dp"-->
+        <!--android:background="@drawable/black_border"-->
+        <!--android:id="@+id/txtMonday"-->
+        <!--android:layout_width="@dimen/cell_width"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginStart="@dimen/margin"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--android:layout_marginBottom="4dp"-->
+        <!--android:background="@drawable/black_border"-->
+        <!--android:id="@+id/txtTuesday"-->
+        <!--android:layout_width="@dimen/cell_width"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginStart="@dimen/margin"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--android:layout_marginBottom="4dp"-->
+        <!--android:background="@drawable/black_border"-->
+        <!--android:id="@+id/txtWednesday"-->
+        <!--android:layout_width="@dimen/cell_width"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginStart="@dimen/margin"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--android:layout_marginBottom="4dp"-->
+        <!--android:background="@drawable/black_border"-->
+        <!--android:id="@+id/txtThursday"-->
+        <!--android:layout_width="@dimen/cell_width"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginStart="@dimen/margin"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--android:layout_marginBottom="4dp"-->
+        <!--android:background="@drawable/black_border"-->
+        <!--android:id="@+id/txtFriday"-->
+        <!--android:layout_width="@dimen/cell_width"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginStart="@dimen/margin"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textStyle="bold" />-->
+
+</LinearLayout>

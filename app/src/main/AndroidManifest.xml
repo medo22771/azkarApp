@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <uses-permission android:name="TASKS" />
 
     <application
@@ -15,23 +16,15 @@
         android:icon="@drawable/launcher_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        tools:replace="android:icon"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Ui.Home_Screen.HomeScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+        <activity android:name=".Ui.Home_Screen.HomeScreenActivity" />
 
         <receiver android:name=".Reciever.OverLayWindowReceiver">
             <intent-filter>
                 <action android:name="SHOW_OVERLAY_VIEW" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".Reciever.OnBootCompleteReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -42,6 +35,15 @@
             android:name=".Service.FloatingWidgetService"
             android:enabled="true"
             android:exported="false" />
+
+        <activity android:name=".Ui.Splash_Screen.SplashScreenActivity"></activity>
+        <activity android:name=".Ui.Werd_El_Mo7asba_Screen.WerdMohasbaActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

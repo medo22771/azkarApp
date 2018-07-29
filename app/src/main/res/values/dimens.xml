@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="room_status_cell_length">64dp</dimen>
+    <dimen name="row_height">80dp</dimen>
+    <dimen name="header_height">60dp</dimen>
+    <dimen name="cell_width">120dp</dimen>
+    <dimen name="margin">5dp</dimen>
+
+</resources>

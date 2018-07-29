@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">azkar</string>
+    <string name="title_activity_werd_mohasba">WerdMohasbaActivity</string>
+
+    <string name="saturday">السبت</string>
+    <string name="sunday">الأحد</string>
+    <string name="monday">الإثنين</string>
+    <string name="tuesday">الثلاثاء</string>
+    <string name="wednesday">الأربعاء</string>
+    <string name="thursday">الخميس</string>
+    <string name="friday">الجمعة</string>
+    <string name="tasks">المهام</string>
+
+    <string-array name="Days">
+        <item>@string/saturday</item>
+        <item>@string/sunday</item>
+        <item>@string/monday</item>
+        <item>@string/tuesday</item>
+        <item>@string/wednesday</item>
+        <item>@string/thursday</item>
+        <item>@string/friday</item>
+    </string-array>
+
+    <string-array name="Tasks">
+        <item>سنة الفجر</item>
+        <item>صلاة الفجر</item>
+        <item>أذكار الصلاة</item>
+        <item>أذكار الصباح</item>
+        <item>قراءة جزء من القراّن</item>
+        <item>صلاة الضحي</item>
+        <item>سنة الظهر القبلية</item>
+        <item>صلاة الظهر</item>
+        <item>سنة الظهر البعدية</item>
+        <item>أذكار الصلاة</item>
+        <item>أذكار المساء</item>
+        <item>صلاة المغرب</item>
+        <!--<item>سنة المغرب</item>-->
+        <!--<item>أذكار الصلاة</item>-->
+        <!--<item>صلاة العشاء</item>-->
+        <!--<item>سنة العشاء</item>-->
+        <!--<item>اذكار الصلاة</item>-->
+        <!--<item>ركعتين قيام الليل</item>-->
+        <!--<item>صلاة الشفع</item>-->
+        <!--<item>صلاة الوتر</item>-->
+        <!--<item>صيام الإثنين و الخميس</item>-->
+    </string-array>
 </resources>
