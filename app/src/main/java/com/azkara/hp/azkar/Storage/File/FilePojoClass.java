@@ -1,42 +1,40 @@
 package com.azkara.hp.azkar.Storage.File;
 
+import com.azkara.hp.azkar.Model.AzkarElMoslem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class FilePojoClass {
-    @SerializedName("age")
+    @SerializedName("version")
     @Expose
-    private Integer age;
-    @SerializedName("messages1")
+    private int version;
+    @SerializedName("azkar")
     @Expose
-    private List<String> messages1 = null;
-    @SerializedName("messages2")
-    @Expose
-    private List<String> messages2 = null;
+    private List<AzkarElMoslem> azkar = null;
 
-    public Integer getAge() {
-        return age;
+    public FilePojoClass() {
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public FilePojoClass(int version, List<AzkarElMoslem> azkar) {
+        this.version = version;
+        this.azkar = azkar;
     }
 
-    public List<String> getMessages1() {
-        return messages1;
+    public int getVersion() {
+        return version;
     }
 
-    public void setMessages1(List<String> messages1) {
-        this.messages1 = messages1;
+    public void setVersion(int version) {
+        this.version = version;
     }
 
-    public List<String> getMessages2() {
-        return messages2;
+    public List<AzkarElMoslem> getAzkar() {
+        return azkar;
     }
 
-    public void setMessages2(List<String> messages2) {
-        this.messages2 = messages2;
+    public void setAzkar(List<AzkarElMoslem> azkar) {
+        this.azkar = azkar;
     }
 }

@@ -4,7 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.support.v7.app.AppCompatActivity;
 
 import com.azkara.hp.azkar.Model.DailyTask;
 import com.azkara.hp.azkar.R;
@@ -12,7 +12,6 @@ import com.azkara.hp.azkar.Storage.SharedPref.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by NaderNabil216@gmail.com on 7/15/2018.
@@ -86,5 +85,18 @@ public class GeneralMethods {
                 type = Constants.CellsType.TYPE_SALAH;
         }
         return type;
+    }
+
+    public static void checkTheme(AppCompatActivity activity) {
+        int selectedTheme = SharedPrefManager.getInstance().doStuff(activity).getThemeColor();
+        if (selectedTheme == Constants.ConstantsValues.LightTheme) {
+            activity.setTheme(R.style.LightAppTheme);
+        } else if (selectedTheme == Constants.ConstantsValues.DarkTheme) {
+            activity.setTheme(R.style.DarkAppTheme);
+        } else if (selectedTheme == Constants.ConstantsValues.GreenTheme) {
+            activity.setTheme(R.style.GreenAppTheme);
+        } else if (selectedTheme == Constants.ConstantsValues.PinkTheme) {
+            activity.setTheme(R.style.PinkAppTheme);
+        }
     }
 }

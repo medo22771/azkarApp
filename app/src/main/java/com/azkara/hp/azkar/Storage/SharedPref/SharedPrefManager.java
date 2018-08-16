@@ -11,7 +11,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by NaderNabil216@gmail.com on 7/16/2018.
@@ -44,7 +43,7 @@ public class SharedPrefManager {
     }
 
     public Long getAlarmManagerRepeatTime() {
-        return preferences.getLong(Constants.SharedPreferencesTags.AlarmManagerTime, 0);
+        return preferences.getLong(Constants.SharedPreferencesTags.AlarmManagerTime, Constants.ConstantsValues.NoRepeat);
     }
 
     public void setCellsData(ArrayList<DailyTask> cellsData) {
@@ -68,4 +67,30 @@ public class SharedPrefManager {
         }
     }
 
+    public void setAzkarElMoslemFileVersion(int version) {
+        editor.putInt(Constants.SharedPreferencesTags.AzkarElMoslemFileVersion, version);
+        editor.apply();
+    }
+
+    public void setAzkarFileVersion(int version) {
+        editor.putInt(Constants.SharedPreferencesTags.AzkarFileVersion, version);
+        editor.apply();
+    }
+
+    public int getAzkarElMoslemFileVersion() {
+        return preferences.getInt(Constants.SharedPreferencesTags.AzkarElMoslemFileVersion, 0);
+    }
+
+    public int getAzkarFileVersion() {
+        return preferences.getInt(Constants.SharedPreferencesTags.AzkarFileVersion, 0);
+    }
+
+    public void setThemeColor(int theme) {
+        editor.putInt(Constants.SharedPreferencesTags.ThemeColor, theme);
+        editor.apply();
+    }
+
+    public int getThemeColor() {
+        return preferences.getInt(Constants.SharedPreferencesTags.ThemeColor, Constants.ConstantsValues.LightTheme);
+    }
 }

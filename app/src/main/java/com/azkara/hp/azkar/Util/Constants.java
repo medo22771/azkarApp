@@ -13,6 +13,9 @@ public class Constants {
     public class SharedPreferencesTags {
         public final static String AlarmManagerTime = "AlarmManagerTime";
         public static final String CellsData = "CellsData";
+        public static final String AzkarElMoslemFileVersion = "AzkarElMoslemFileVersion";
+        public static final String AzkarFileVersion = "AzkarFileVersion";
+        public static final String ThemeColor="ThemeColor";
     }
 
     public class RoomTags {
@@ -31,5 +34,19 @@ public class Constants {
         public static final int TYPE_ZEKR = 2;
         public static final int TYPE_QOUR2AN = 3;
         public static final int TYPE_SEYAM = 4;
+    }
+
+    public class ConstantsValues {
+        public static final long NoRepeat = 0;
+        public static final long VeryHighRepeat = 3600000;
+        public static final long HighRepeat = 3600000 * 2;
+        public static final long MediumRepeat = 3600000 * 4;
+        public static final long LowRepeat = 3600000 * 6;
+
+        public static final int LightTheme = 1;
+        public static final int DarkTheme = 2;
+        public static final int GreenTheme = 3;
+        public static final int PinkTheme = 4;
+
     }
 }

@@ -39,8 +39,7 @@ public class WerdMohasbaActivity extends AppCompatActivity {
         horizontalScrollView = findViewById(R.id.headerScroll);
         manager = new FixedGridLayoutManager();
         manager.setTotalColumnCount(1);
-       // recyclerView.setLayoutManager(manager);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new FixedGridLayoutManager());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {

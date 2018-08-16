@@ -36,7 +36,7 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".Ui.Splash_Screen.SplashScreenActivity"></activity>
+        <activity android:name=".Ui.Splash_Screen.SplashScreenActivity" />
         <activity android:name=".Ui.Werd_El_Mo7asba_Screen.WerdMohasbaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,6 +44,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Ui.Azkar_Muslem_Screen.AzkarElMoslemActivity" />
+        <activity android:name=".Ui.Azkary_Screen.AzkaryActivity" />
+        <activity android:name=".Ui.Sebha_Screen.SebhaActivity" />
+        <activity android:name=".Ui.Settings_Screen.SettingsActivity" />
+        <activity android:name=".Ui.Azkar_Muslem_Content_Screen.AzkarElMoslemContentActivity" />
+        <activity android:name=".Ui.ChangeThemeScreen.ChangeThemeActivity"></activity>
     </application>
 
 </manifest>

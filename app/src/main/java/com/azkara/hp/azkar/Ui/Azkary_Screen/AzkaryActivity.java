@@ -1,0 +1,15 @@
+package com.azkara.hp.azkar.Ui.Azkary_Screen;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import com.azkara.hp.azkar.R;
+
+public class AzkaryActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_azkary);
+    }
+}

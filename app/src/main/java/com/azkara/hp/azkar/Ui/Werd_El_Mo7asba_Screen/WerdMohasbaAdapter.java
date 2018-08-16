@@ -33,50 +33,56 @@ public class WerdMohasbaAdapter extends RecyclerView.Adapter<WerdMohasbaAdapter.
     public void onBindViewHolder(@NonNull RowHolder holder, int position) {
         DailyTask dailyTask = dailyTasks.get(position);
         holder.txtTask.setText(dailyTask.getTaskName());
-        checkFroCheckedDays(holder, dailyTask);
         setClickListenerForViews(holder, dailyTask);
-        if (dailyTask.isDayChecked(context.getString(R.string.saturday))) {
+        if (dailyTask.getSat()==1) {
             holder.txtSat.setBackgroundResource(R.drawable.black_border_green_background);
-        }else if (dailyTask.isDayChecked(context.getString(R.string.sunday))) {
-            holder.txtSun.setBackgroundResource(R.drawable.black_border_green_background);
         }else {
             holder.txtSat.setBackgroundResource(R.drawable.black_border);
         }
-    }
 
-    private void checkFroCheckedDays(RowHolder holder, DailyTask dailyTask) {
-
-        if (dailyTask.isDayChecked(context.getString(R.string.saturday))) {
-            holder.txtSat.setBackgroundResource(R.drawable.black_border_green_background);
-        }else if (dailyTask.isDayChecked(context.getString(R.string.sunday))) {
+        if (dailyTask.getSun()==1) {
             holder.txtSun.setBackgroundResource(R.drawable.black_border_green_background);
         }else {
-            holder.txtSat.setBackgroundResource(R.drawable.black_border);
+            holder.txtSun.setBackgroundResource(R.drawable.black_border);
         }
-//        if (dailyTask.isDayChecked(context.getString(R.string.monday))) {
-//            holder.txtMon.setBackgroundResource(R.drawable.black_border_green_background);
-//        }
-//        if (dailyTask.isDayChecked(context.getString(R.string.tuesday))) {
-//            holder.txtTue.setBackgroundResource(R.drawable.black_border_green_background);
-//        }
-//        if (dailyTask.isDayChecked(context.getString(R.string.wednesday))) {
-//            holder.txtWed.setBackgroundResource(R.drawable.black_border_green_background);
-//        }
-//        if (dailyTask.isDayChecked(context.getString(R.string.thursday))) {
-//            holder.txtThu.setBackgroundResource(R.drawable.black_border_green_background);
-//        }
-//        if (dailyTask.isDayChecked(context.getString(R.string.friday))) {
-//            holder.txtFri.setBackgroundResource(R.drawable.black_border_green_background);
-//        }
 
+        if (dailyTask.getMon()==1) {
+            holder.txtMon.setBackgroundResource(R.drawable.black_border_green_background);
+        }else {
+            holder.txtMon.setBackgroundResource(R.drawable.black_border);
+        }
+
+        if (dailyTask.getTue()==1) {
+            holder.txtTue.setBackgroundResource(R.drawable.black_border_green_background);
+        }else {
+            holder.txtTue.setBackgroundResource(R.drawable.black_border);
+        }
+
+        if (dailyTask.getWed()==1) {
+            holder.txtWed.setBackgroundResource(R.drawable.black_border_green_background);
+        }else {
+            holder.txtWed.setBackgroundResource(R.drawable.black_border);
+        }
+
+        if (dailyTask.getThu()==1) {
+            holder.txtThu.setBackgroundResource(R.drawable.black_border_green_background);
+        }else {
+            holder.txtThu.setBackgroundResource(R.drawable.black_border);
+        }
+
+        if (dailyTask.getFri()==1) {
+            holder.txtFri.setBackgroundResource(R.drawable.black_border_green_background);
+        }else {
+            holder.txtFri.setBackgroundResource(R.drawable.black_border);
+        }
     }
 
     private void setClickListenerForViews(RowHolder holder, final DailyTask dailyTask) {
         holder.txtSat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!dailyTask.isDayChecked(context.getString(R.string.saturday))) {
-                    dailyTask.setDayToBeChecked((context.getString(R.string.saturday)));
+                if (dailyTask.getSat()==0) {
+                    dailyTask.setSat(1);
                     notifyDataSetChanged();
                 }
             }
@@ -85,53 +91,63 @@ public class WerdMohasbaAdapter extends RecyclerView.Adapter<WerdMohasbaAdapter.
         holder.txtSun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!dailyTask.isDayChecked((context.getString(R.string.sunday)))) {
-                    dailyTask.setDayToBeChecked((context.getString(R.string.sunday)));
+                if (dailyTask.getSun()==0) {
+                    dailyTask.setSun(1);
                     notifyDataSetChanged();
                 }
 
             }
         });
 
-//        holder.txtMon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dailyTask.setDayToBeChecked((context.getString(R.string.monday)));
-//                notifyDataSetChanged();
-//            }
-//        });
-//
-//        holder.txtTue.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dailyTask.setDayToBeChecked((context.getString(R.string.tuesday)));
-//                notifyDataSetChanged();
-//            }
-//        });
-//
-//        holder.txtWed.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dailyTask.setDayToBeChecked((context.getString(R.string.wednesday)));
-//                notifyDataSetChanged();
-//            }
-//        });
-//
-//        holder.txtThu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dailyTask.setDayToBeChecked((context.getString(R.string.thursday)));
-//                notifyDataSetChanged();
-//            }
-//        });
-//
-//        holder.txtFri.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dailyTask.setDayToBeChecked((context.getString(R.string.friday)));
-//                notifyDataSetChanged();
-//            }
-//        });
+        holder.txtMon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dailyTask.getMon()==0) {
+                    dailyTask.setMon(1);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        holder.txtTue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dailyTask.getTue()==0) {
+                    dailyTask.setTue(1);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        holder.txtWed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dailyTask.getWed()==0) {
+                    dailyTask.setWed(1);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        holder.txtThu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dailyTask.getThu()==0) {
+                    dailyTask.setThu(1);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        holder.txtFri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dailyTask.getFri()==0) {
+                    dailyTask.setFri(1);
+                    notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     public ArrayList<DailyTask> getDailyTasks() {
@@ -153,11 +169,11 @@ public class WerdMohasbaAdapter extends RecyclerView.Adapter<WerdMohasbaAdapter.
             txtTask = itemView.findViewById(R.id.txtTaskName);
             txtSat = itemView.findViewById(R.id.txtSaturday);
             txtSun = itemView.findViewById(R.id.txtSunday);
-//            txtMon = itemView.findViewById(R.id.txtMonday);
-//            txtTue = itemView.findViewById(R.id.txtTuesday);
-//            txtWed = itemView.findViewById(R.id.txtWednesday);
-//            txtThu = itemView.findViewById(R.id.txtThursday);
-//            txtFri = itemView.findViewById(R.id.txtFriday);
+            txtMon = itemView.findViewById(R.id.txtMonday);
+            txtTue = itemView.findViewById(R.id.txtTuesday);
+            txtWed = itemView.findViewById(R.id.txtWednesday);
+            txtThu = itemView.findViewById(R.id.txtThursday);
+            txtFri = itemView.findViewById(R.id.txtFriday);
 
         }
     }
