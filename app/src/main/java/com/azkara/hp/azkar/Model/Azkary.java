@@ -18,6 +18,8 @@ public class Azkary {
     @ColumnInfo(name = Constants.RoomTags.ZekrContentCol)
     private String zekr_content;
 
+    private boolean checked = false ;
+
     public Azkary(String zekr_content) {
         this.zekr_content = zekr_content;
     }
@@ -37,5 +39,13 @@ public class Azkary {
 
     public void setZekr_content(String zekr_content) {
         this.zekr_content = zekr_content;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

@@ -3,6 +3,8 @@ package com.azkara.hp.azkar.Storage.SharedPref;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.azkara.hp.azkar.Model.AzkarElMoslem;
+import com.azkara.hp.azkar.Model.Azkary;
 import com.azkara.hp.azkar.Model.DailyTask;
 import com.azkara.hp.azkar.Util.Constants;
 import com.azkara.hp.azkar.Util.GeneralMethods;
@@ -61,6 +63,69 @@ public class SharedPrefManager {
         data = gson.fromJson(dataJson, type);
         if (data == null || data.isEmpty()) {
             data = GeneralMethods.getDefaultData(context);
+            return data;
+        } else {
+            return data;
+        }
+    }
+
+    public void setAzkarElMoslemData(ArrayList<AzkarElMoslem> azkarElMoslemData) {
+        editor.putString(Constants.SharedPreferencesTags.AzkarElMoslem, new Gson().toJson(azkarElMoslemData));
+        editor.apply();
+    }
+
+    public void setAzkaryData(ArrayList<Azkary> azkaryData) {
+        editor.putString(Constants.SharedPreferencesTags.Azkary, new Gson().toJson(azkaryData));
+        editor.apply();
+    }
+
+    public void setAzkarSebhaData(ArrayList<String> azkarSebhaData) {
+        editor.putString(Constants.SharedPreferencesTags.AzkarSebha, new Gson().toJson(azkarSebhaData));
+        editor.apply();
+    }
+
+    public ArrayList<AzkarElMoslem> getAzkarElmoslemData() {
+        String dataJson = "";
+        ArrayList<AzkarElMoslem> data;
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<AzkarElMoslem>>() {
+        }.getType();
+        dataJson = preferences.getString(Constants.SharedPreferencesTags.AzkarElMoslem, "");
+        data = gson.fromJson(dataJson, type);
+        if (data == null || data.isEmpty()) {
+            data = new ArrayList<>();
+            return data;
+        } else {
+            return data;
+        }
+    }
+
+    public ArrayList<Azkary> getAzkaryData() {
+        String dataJson = "";
+        ArrayList<Azkary> data;
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<Azkary>>() {
+        }.getType();
+        dataJson = preferences.getString(Constants.SharedPreferencesTags.Azkary, "");
+        data = gson.fromJson(dataJson, type);
+        if (data == null || data.isEmpty()) {
+            data = new ArrayList<>();
+            return data;
+        } else {
+            return data;
+        }
+    }
+
+    public ArrayList<String> getAzkarSebhaData() {
+        String dataJson = "";
+        ArrayList<String> data;
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<String>>() {
+        }.getType();
+        dataJson = preferences.getString(Constants.SharedPreferencesTags.AzkarSebha, "");
+        data = gson.fromJson(dataJson, type);
+        if (data == null || data.isEmpty()) {
+            data = new ArrayList<>();
             return data;
         } else {
             return data;

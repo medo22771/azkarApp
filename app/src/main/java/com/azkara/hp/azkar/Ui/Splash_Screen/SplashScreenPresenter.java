@@ -18,7 +18,8 @@ public class SplashScreenPresenter {
     public void checkFileVersion (){
         FilePojoClass pojoClass = fileReprosatory.getFileData(context);
         if (pojoClass.getVersion() != prefManager.getAzkarElMoslemFileVersion()){
-
+            prefManager.setAzkarElMoslemData(pojoClass.getAzkar());
+            prefManager.setAzkarElMoslemFileVersion(pojoClass.getVersion());
         }
     }
 }

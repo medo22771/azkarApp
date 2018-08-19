@@ -4,6 +4,7 @@ import com.azkara.hp.azkar.Model.AzkarElMoslem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilePojoClass {
@@ -12,12 +13,12 @@ public class FilePojoClass {
     private int version;
     @SerializedName("azkar")
     @Expose
-    private List<AzkarElMoslem> azkar = null;
+    private ArrayList<AzkarElMoslem> azkar = null;
 
     public FilePojoClass() {
     }
 
-    public FilePojoClass(int version, List<AzkarElMoslem> azkar) {
+    public FilePojoClass(int version, ArrayList<AzkarElMoslem> azkar) {
         this.version = version;
         this.azkar = azkar;
     }
@@ -30,11 +31,11 @@ public class FilePojoClass {
         this.version = version;
     }
 
-    public List<AzkarElMoslem> getAzkar() {
+    public ArrayList<AzkarElMoslem> getAzkar() {
         return azkar;
     }
 
-    public void setAzkar(List<AzkarElMoslem> azkar) {
+    public void setAzkar(ArrayList<AzkarElMoslem> azkar) {
         this.azkar = azkar;
     }
 }

@@ -15,7 +15,10 @@ public class Constants {
         public static final String CellsData = "CellsData";
         public static final String AzkarElMoslemFileVersion = "AzkarElMoslemFileVersion";
         public static final String AzkarFileVersion = "AzkarFileVersion";
-        public static final String ThemeColor="ThemeColor";
+        public static final String ThemeColor = "ThemeColor";
+        public static final String AzkarElMoslem = "AzkarElMoslem";
+        public static final String Azkary = "Azkary";
+        public static final String AzkarSebha = "AzkarSebha";
     }
 
     public class RoomTags {
@@ -48,5 +51,26 @@ public class Constants {
         public static final int GreenTheme = 3;
         public static final int PinkTheme = 4;
 
+    }
+
+    public class AzkarCategories {
+        public static final int cat1 = 1;
+        public static final int cat2 = 2;
+        public static final int cat3 = 3;
+        public static final int cat4 = 4;
+        public static final int cat5 = 5;
+        public static final int cat6 = 6;
+        public static final int cat7 = 7;
+        public static final int cat8 = 8;
+        public static final int cat9 = 9;
+        public static final int cat10 = 10;
+        public static final int cat11 = 11;
+        public static final int cat12 = 12;
+        public static final int cat13 = 13;
+        public static final int cat14 = 14;
+        public static final int cat15 = 15;
+        public static final int cat16 = 16;
+        public static final int cat17 = 17;
+        public static final int cat18 = 18;
     }
 }

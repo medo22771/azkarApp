@@ -44,4 +44,26 @@
         <item>صلاة الوتر</item>
         <item>صيام الإثنين و الخميس</item>
     </string-array>
+
+    <string-array name="AzkarCategories">
+        <item>اذكار الصباح</item>
+        <item>اذكار المساء</item>
+        <item>اذكار بعد الصلاة</item>
+        <item>اذكار الأذان</item>
+        <item>اذكار قبل النوم</item>
+        <item>الذكر قبل الوضوء</item>
+        <item>الذكر بعد الوضوع</item>
+        <item>دعاء دخول المسجد</item>
+        <item>دعاء الخروج من المسجد</item>
+        <item>الدعاء بعد التشهد قبل السلام</item>
+        <item>ما يفعل من رأي الزؤيا أو الحلم</item>
+        <item>دعاء الإستخارة</item>
+        <item>دعاء سجود التلاوة</item>
+        <item>دعاء الفزع من النوم</item>
+        <item>قبل الطعام</item>
+        <item>الذكر عند دخول المنزل</item>
+        <item>ما يفعل او يقال من أحس وجعا في جسده</item>
+        <item>من خشي ان يصيب شئ بعينه</item>
+        <item>من فضائل يوم الجمعة</item>
+    </string-array>
 </resources>
