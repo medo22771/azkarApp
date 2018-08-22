@@ -11,6 +11,5 @@ public class OverLayWindowReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Intent startServiceIntent = new Intent(context, FloatingWidgetService.class);
         context.startService(startServiceIntent);
-
     }
 }

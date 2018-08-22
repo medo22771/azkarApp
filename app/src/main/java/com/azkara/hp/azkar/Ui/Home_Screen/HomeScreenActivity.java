@@ -17,6 +17,7 @@ import com.azkara.hp.azkar.Ui.Sebha_Screen.SebhaActivity;
 import com.azkara.hp.azkar.Ui.Settings_Screen.SettingsActivity;
 import com.azkara.hp.azkar.Ui.Werd_El_Mo7asba_Screen.WerdMohasbaActivity;
 import com.azkara.hp.azkar.Util.Constants;
+import com.azkara.hp.azkar.Util.GeneralMethods;
 
 public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener {
     RelativeLayout rlAzkary, rlAzkarElMoslem, rlSettings, rlWerdElMohasba, rlSebha;
@@ -26,6 +27,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GeneralMethods.checkTheme(this);
         setContentView(R.layout.activity_home);
         prefManager = SharedPrefManager.getInstance().doStuff(this);
         initViews();

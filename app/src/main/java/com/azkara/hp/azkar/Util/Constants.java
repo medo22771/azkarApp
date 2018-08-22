@@ -8,6 +8,8 @@ public class Constants {
     public class IntentStrings {
         public final static String SHOW_OVERLAY_VIEW = "SHOW_OVERLAY_VIEW";
         public final static String OVERLAY_ZEKR = "OVERLAY_ZEKR";
+        public static final String CategoryId = "CategoryId";
+        public static final String CategoryName = "CategoryName";
     }
 
     public class SharedPreferencesTags {
@@ -19,6 +21,10 @@ public class Constants {
         public static final String AzkarElMoslem = "AzkarElMoslem";
         public static final String Azkary = "Azkary";
         public static final String AzkarSebha = "AzkarSebha";
+        public static final String FontSize ="FontSize";
+        public static final String SebhaCount = "SebhaCount";
+        public static final String SebhaVibrate="SebhaVibrate";
+        public static final String ZekrDisappear="ZekrDisappear";
     }
 
     public class RoomTags {

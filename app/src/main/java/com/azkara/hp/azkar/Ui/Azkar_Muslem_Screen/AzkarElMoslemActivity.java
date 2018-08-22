@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.azkara.hp.azkar.Model.AzkarElMoslemCategory;
 import com.azkara.hp.azkar.R;
+import com.azkara.hp.azkar.Util.GeneralMethods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ public class AzkarElMoslemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GeneralMethods.checkTheme(this);
         setContentView(R.layout.activity_azkar_el_moslem);
         initViews();
         setData(generateAzkarCategoryList());

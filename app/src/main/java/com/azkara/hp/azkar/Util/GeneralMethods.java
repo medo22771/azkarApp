@@ -2,16 +2,22 @@ package com.azkara.hp.azkar.Util;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
+import com.azkara.hp.azkar.Model.Azkary;
 import com.azkara.hp.azkar.Model.DailyTask;
 import com.azkara.hp.azkar.R;
 import com.azkara.hp.azkar.Storage.SharedPref.SharedPrefManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Random;
 
 /**
  * Created by NaderNabil216@gmail.com on 7/15/2018.
@@ -98,5 +104,46 @@ public class GeneralMethods {
         } else if (selectedTheme == Constants.ConstantsValues.PinkTheme) {
             activity.setTheme(R.style.PinkAppTheme);
         }
+    }
+
+    public static ArrayList<String> getDefaultAzkarSebha(Context context) {
+        return new ArrayList<String>(Arrays.asList(context.getResources().getStringArray(R.array.SebhaAzkar)));
+    }
+
+    public static String getRundomZekr (Context context){
+        SharedPrefManager prefManager = SharedPrefManager.getInstance().doStuff(context);
+        ArrayList<Azkary> azkaryData = prefManager.getAzkaryData();
+        if (azkaryData.isEmpty()){
+            return "";
+        }else {
+            Random random = new Random();
+            int randomPosition = random.nextInt(azkaryData.size());
+            return azkaryData.get(randomPosition).getZekr_content();
+        }
+    }
+
+    public static ProgressDialog show_progress_dialoug(Context context, String Body_text, boolean cancelable) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(cancelable);
+        progressDialog.setMessage(Body_text);
+        progressDialog.show();
+        return progressDialog;
+    }
+
+    public static void show_alert_dialoug(Context context, String body, String title, boolean cancelable, String positive_text, String negative_text, DialogInterface.OnClickListener yesListener, DialogInterface.OnClickListener NoListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setCancelable(cancelable).setMessage(body);
+        if (!title.isEmpty()) {
+            builder.setTitle(title);
+        }
+        if (!positive_text.isEmpty()) {
+            builder.setPositiveButton(positive_text, yesListener);
+        }
+        if (!negative_text.isEmpty()) {
+            builder.setNegativeButton(negative_text, NoListener);
+        }
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

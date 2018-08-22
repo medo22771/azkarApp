@@ -125,7 +125,8 @@ public class SharedPrefManager {
         dataJson = preferences.getString(Constants.SharedPreferencesTags.AzkarSebha, "");
         data = gson.fromJson(dataJson, type);
         if (data == null || data.isEmpty()) {
-            data = new ArrayList<>();
+            data = GeneralMethods.getDefaultAzkarSebha(context);
+            setAzkarSebhaData(data);
             return data;
         } else {
             return data;
@@ -158,4 +159,32 @@ public class SharedPrefManager {
     public int getThemeColor() {
         return preferences.getInt(Constants.SharedPreferencesTags.ThemeColor, Constants.ConstantsValues.LightTheme);
     }
+
+    public void setSebhaCount(int count) {
+        editor.putInt(Constants.SharedPreferencesTags.SebhaCount, count);
+        editor.apply();
+    }
+
+    public int getSebhaCount() {
+        return preferences.getInt(Constants.SharedPreferencesTags.SebhaCount, 33);
+    }
+
+    public void setSebhaVibrate(boolean isVibrate){
+        editor.putBoolean(Constants.SharedPreferencesTags.SebhaVibrate, isVibrate);
+        editor.apply();
+    }
+
+    public boolean getSebhaVibrate(){
+        return preferences.getBoolean(Constants.SharedPreferencesTags.SebhaVibrate,false);
+    }
+
+    public void setZekrDisappears (boolean canDisappears){
+        editor.putBoolean(Constants.SharedPreferencesTags.ZekrDisappear, canDisappears);
+        editor.apply();
+    }
+
+    public boolean canDisappears(){
+        return preferences.getBoolean(Constants.SharedPreferencesTags.ZekrDisappear,true);
+    }
+
 }

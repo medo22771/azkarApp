@@ -73,4 +73,11 @@ public class AzkarElMoslem {
     public void setZekrCategory(int zekrCategory) {
         this.zekrCategory = zekrCategory;
     }
+
+    public boolean decreaseCount(){
+        if (zekrCount>0){
+        this.zekrCount--;
+        }
+        return zekrCount==0;
+    }
 }

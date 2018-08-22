@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.azkara.hp.azkar.Model.Azkary;
 import com.azkara.hp.azkar.R;
 import com.azkara.hp.azkar.Storage.SharedPref.SharedPrefManager;
+import com.azkara.hp.azkar.Util.GeneralMethods;
 
 public class AzkaryActivity extends AppCompatActivity {
     ImageView btnBack;
@@ -30,6 +31,7 @@ public class AzkaryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GeneralMethods.checkTheme(this);
         setContentView(R.layout.activity_azkary);
         prefManager = SharedPrefManager.getInstance().doStuff(this);
         initViews();
