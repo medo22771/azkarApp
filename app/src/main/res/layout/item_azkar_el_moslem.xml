@@ -8,6 +8,7 @@
     android:textDirection="rtl">
 
     <TextView
+        android:gravity="center"
         android:id="@+id/tvZekrTitle"
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="200dp"

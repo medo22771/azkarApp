@@ -1,6 +1,10 @@
 package com.azkara.hp.azkar.Util;
 
 
+import android.app.AlarmManager;
+
+import java.util.Calendar;
+
 /**
  * Created by NaderNabil216@gmail.com on 7/16/2018.
  */
@@ -8,8 +12,13 @@ public class Constants {
     public class IntentStrings {
         public final static String SHOW_OVERLAY_VIEW = "SHOW_OVERLAY_VIEW";
         public final static String OVERLAY_ZEKR = "OVERLAY_ZEKR";
+        public static final String ZekrNotification="ZekrNotification";
         public static final String CategoryId = "CategoryId";
         public static final String CategoryName = "CategoryName";
+        public static final String CategoryPosition = "CategoryPosition";
+        public static final String SebhaZekr = "SebhaZekr";
+        public static final String ZekrType="ZekrType";
+
     }
 
     public class SharedPreferencesTags {
@@ -21,10 +30,17 @@ public class Constants {
         public static final String AzkarElMoslem = "AzkarElMoslem";
         public static final String Azkary = "Azkary";
         public static final String AzkarSebha = "AzkarSebha";
-        public static final String FontSize ="FontSize";
+        public static final String AzkarElMoslemFontSize = "AzkarElMoslemFontSize";
+        public static final String AzkaryFontSize = "AzkaryFontSize";
+        public static final String SelectedFont = "SelectedFont";
         public static final String SebhaCount = "SebhaCount";
-        public static final String SebhaVibrate="SebhaVibrate";
-        public static final String ZekrDisappear="ZekrDisappear";
+        public static final String SebhaVibrate = "SebhaVibrate";
+        public static final String ZekrDisappear = "ZekrDisappear";
+        public static final String AzkarVibrate = "AzkarVibrate";
+        public static final String AzkarSabahTime = "AzkarSabahTime";
+        public static final String AzkarMasaaTime = "AzkarMasaaTime";
+        public static final String AzkarNoomTime = "AzkarNoomTime";
+        public static final String OverlayCalendar="OverlayCalendar";
     }
 
     public class RoomTags {
@@ -46,16 +62,21 @@ public class Constants {
     }
 
     public class ConstantsValues {
-        public static final long NoRepeat = 0;
-        public static final long VeryHighRepeat = 3600000;
-        public static final long HighRepeat = 3600000 * 2;
-        public static final long MediumRepeat = 3600000 * 4;
-        public static final long LowRepeat = 3600000 * 6;
+        public static final int NoRepeat = 0;
+        public static final int VeryHighRepeat = 1 ;
+        public static final int HighRepeat = 2;
+        public static final int MediumRepeat = 4;
+        public static final int LowRepeat = 6;
 
         public static final int LightTheme = 1;
         public static final int DarkTheme = 2;
         public static final int GreenTheme = 3;
         public static final int PinkTheme = 4;
+
+        public static final int SmallFont = 20;
+        public static final int MediumFont = 24;
+        public static final int LargeFont = 28;
+
 
     }
 

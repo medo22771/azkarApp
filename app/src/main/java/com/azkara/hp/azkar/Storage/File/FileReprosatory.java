@@ -14,7 +14,7 @@ public class FileReprosatory {
     private String readFromfile(Context context) {
         String text = "";
         try{
-            InputStream inputStream = context.getAssets().open("data.txt");
+            InputStream inputStream = context.getAssets().open("data1.txt");
             int size = inputStream.available();
             byte[] buffer = new byte[size];
             inputStream.read(buffer);

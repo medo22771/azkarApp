@@ -1,12 +1,14 @@
 package com.azkara.hp.azkar.Ui.Sebha_Screen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -15,10 +17,12 @@ import android.widget.TextView;
 
 import com.azkara.hp.azkar.R;
 import com.azkara.hp.azkar.Storage.SharedPref.SharedPrefManager;
+import com.azkara.hp.azkar.Util.Constants;
 import com.azkara.hp.azkar.Util.GeneralMethods;
 import com.easyandroidanimations.library.FadeInAnimation;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
@@ -35,7 +39,7 @@ public class SebhaActivity extends AppCompatActivity implements View.OnClickList
     private SharedPrefManager prefManager;
     private SwitchCompat switchVibrate;
     private boolean isVibrate = false;
-    private ArrayList<String> sebhaAzkar;
+    private String sebhaZekr="";
 
 
     @Override
@@ -43,14 +47,19 @@ public class SebhaActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         GeneralMethods.checkTheme(this);
         setContentView(R.layout.activity_sebha);
+        GeneralMethods.changeActivityFont(this);
         prefManager = SharedPrefManager.getInstance().doStuff(this);
         isVibrate = prefManager.getSebhaVibrate();
         countPreference = prefManager.getSebhaCount();
-        sebhaAzkar = prefManager.getAzkarSebhaData();
+        Intent intent = getIntent();
+        if (intent!=null){
+            sebhaZekr=intent.getStringExtra(Constants.IntentStrings.SebhaZekr);
+        }
+        MobileAds.initialize(this);
         initViews();
         initAdMob();
         checkSebhaCount();
-        changeZekrText();
+        setTextData();
     }
 
     private void initViews() {
@@ -74,6 +83,15 @@ public class SebhaActivity extends AppCompatActivity implements View.OnClickList
         radioUnLimited.setOnClickListener(this);
         rvTasbeh.setOnClickListener(this);
         switchVibrate.setOnClickListener(this);
+
+        isVibrate = prefManager.getSebhaVibrate();
+        switchVibrate.setChecked(isVibrate);
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        tvZekr.setText(sebhaZekr);
     }
 
     @Override
@@ -178,38 +196,28 @@ public class SebhaActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void changeZekrText() {
-        if (currentZekrIndex < sebhaAzkar.size()) {
-            tvZekr.setText(sebhaAzkar.get(currentZekrIndex));
-            currentZekrIndex++;
-        } else {
-            currentZekrIndex = 0;
-            changeZekrText();
-        }
-    }
 
     private void setTextData() {
-        tvTotalCount.setText(String.format("الإجمالي :%d", totalCount));
-        tvCurrentCount.setText(String.format("العدد الحالى :%d", currentCount));
+        tvTotalCount.setText(String.format("الإجمالي : %d", totalCount));
+        tvCurrentCount.setText(String.format("العدد الحالى : %d", currentCount));
     }
 
     private void switchVibration() {
-        switchVibrate.setChecked(!switchVibrate.isChecked());
-        isVibrate = !switchVibrate.isChecked();
-        prefManager.setSebhaVibrate(!switchVibrate.isChecked());
+        isVibrate = switchVibrate.isChecked();
+        prefManager.setSebhaVibrate(switchVibrate.isChecked());
     }
 
     private void initAdMob() {
         MobileAds.initialize(this);
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-1058946254502124/3991378142");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
-                finish();
             }
+
             @Override
             public void onAdClosed() {
                 super.onAdClosed();

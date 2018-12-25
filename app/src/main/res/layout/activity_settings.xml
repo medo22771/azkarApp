@@ -1,9 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:layoutDirection="rtl"
+    android:background="@drawable/bg_window"
+    android:orientation="vertical"
+    android:textDirection="rtl"
     tools:context=".Ui.Settings_Screen.SettingsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?colorPrimary">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="الإعدادات"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:src="@drawable/ic_back"
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="الإشعارات"
+            android:textColor="?colorPrimaryDark" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:theme="@style/customSwitchTheme"
+            android:id="@+id/switchShowAzkary"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:padding="8dp"
+            android:text="إظهار اذكاري"
+            android:textColor="@color/white" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:theme="@style/customSwitchTheme"
+            android:id="@+id/swichDisApperZekr"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:padding="8dp"
+            android:text="إختفاء الذكر عند الصفر"
+            android:textColor="@color/white" />
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="الخط و الألوان"
+            android:textColor="?colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/tvAzkarElMoslemSize"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:padding="8dp"
+            android:text="حجم خط اذكار المسلم"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvAzkarySize"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:padding="8dp"
+            android:text="حجم خط اذكاري"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvFontFamily"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:padding="8dp"
+            android:text="الخط المستخدم في اذكار المسلم"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvChangeTheme"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:padding="8dp"
+            android:text="إختيار الواجهة"
+            android:textColor="@color/white" />
+
+
+        <LinearLayout
+            android:id="@+id/llSabah"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvSabah"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="إختيار وقت اذكار الصباح"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tvSabahTime"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llMesaa"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvMesaa"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="إختيار وقت اذكار المساء"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tvMesaaTime"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llNoom"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvNoom"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="إختيار وقت اذكار قبل النوم"
+                android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/tvNoomTime"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-1058946254502124/5222190021" />
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

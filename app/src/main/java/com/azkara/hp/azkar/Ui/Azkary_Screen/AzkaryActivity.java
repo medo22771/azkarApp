@@ -19,12 +19,14 @@ import com.azkara.hp.azkar.Model.Azkary;
 import com.azkara.hp.azkar.R;
 import com.azkara.hp.azkar.Storage.SharedPref.SharedPrefManager;
 import com.azkara.hp.azkar.Util.GeneralMethods;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 public class AzkaryActivity extends AppCompatActivity {
     ImageView btnBack;
     FloatingActionButton fabAddZekr;
     RecyclerView rvAzkary;
-    TextView tvSave;
     AzkaryAdapter adapter;
     SharedPrefManager prefManager;
 
@@ -33,14 +35,15 @@ public class AzkaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         GeneralMethods.checkTheme(this);
         setContentView(R.layout.activity_azkary);
+        GeneralMethods.changeActivityFont(this);
         prefManager = SharedPrefManager.getInstance().doStuff(this);
+        MobileAds.initialize(this);
         initViews();
         setData();
     }
 
     private void initViews() {
         btnBack = findViewById(R.id.btnBack);
-        tvSave = findViewById(R.id.btnSave);
         fabAddZekr = findViewById(R.id.fabAddZekr);
         rvAzkary = findViewById(R.id.rvAzkary);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -54,23 +57,20 @@ public class AzkaryActivity extends AppCompatActivity {
             }
         });
 
-        tvSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveData();
-            }
-        });
-
         fabAddZekr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addNewZekr();
             }
         });
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
     }
 
     private void setData() {
-        adapter = new AzkaryAdapter(prefManager.getAzkaryData());
+        adapter = new AzkaryAdapter(prefManager.getAzkaryData(this));
         rvAzkary.setAdapter(adapter);
     }
 
@@ -85,6 +85,7 @@ public class AzkaryActivity extends AppCompatActivity {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setView(dialogView);
         dialogBuilder.setCancelable(true);
+        GeneralMethods.changeViewFont(dialogView);
         final AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
 
@@ -96,10 +97,21 @@ public class AzkaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 alertDialog.dismiss();
                 String newZekrText = edAddZekr.getText().toString().trim();
-                if ( !newZekrText.isEmpty()){
+                if (!newZekrText.isEmpty()) {
                     adapter.addNewZekr(new Azkary(newZekrText));
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        saveData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveData();
     }
 }

@@ -5,18 +5,20 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:layoutDirection="rtl"
+    android:background="@drawable/bg_window"
     android:textDirection="rtl"
     tools:context=".Ui.Home_Screen.HomeScreenActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary">
+            android:background="?colorPrimary">
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Title"
@@ -26,34 +28,64 @@
                 android:text="الرئيسية"
                 android:textColor="@color/white" />
 
+            <ImageView
+                android:id="@+id/ivShare"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:src="@drawable/ic_share" />
+
+            <ImageView
+                android:id="@+id/ivRate"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_toEndOf="@id/ivShare"
+                android:src="@drawable/ic_rate" />
+
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/switches"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
             android:background="@color/transBlue">
 
+            <TextView
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/title"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white"
+                android:text="معدل ظهور الأذكار"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <android.support.v7.widget.AppCompatRadioButton
+                android:layout_below="@id/title"
                 android:id="@+id/radioVeryHigh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:buttonTint="@color/white"
                 android:text="عالي جدا"
                 android:textColor="@color/white"
                 android:textSize="21sp" />
 
             <android.support.v7.widget.AppCompatRadioButton
+                android:layout_below="@id/title"
                 android:id="@+id/radioMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
                 android:layout_marginEnd="32dp"
-                android:layout_marginTop="16dp"
                 android:buttonTint="@color/white"
                 android:padding="1dp"
                 android:text="متوسط"
@@ -61,10 +93,10 @@
                 android:textSize="21sp" />
 
             <android.support.v7.widget.AppCompatRadioButton
+                android:layout_below="@id/radioVeryHigh"
                 android:id="@+id/radioHigh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="16dp"
@@ -74,10 +106,10 @@
                 android:textSize="21sp" />
 
             <android.support.v7.widget.AppCompatRadioButton
+                android:layout_below="@id/radioMedium"
                 android:id="@+id/radioLow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="32dp"
@@ -88,8 +120,10 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/cards"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/switches">
 
             <RelativeLayout
                 android:id="@+id/rlAzkarElMoslem"
@@ -97,7 +131,7 @@
                 android:layout_height="100dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_margin="10dp"
+                android:layout_margin="4dp"
                 android:background="@drawable/bg_azkar_el_moslem">
 
                 <TextView
@@ -115,7 +149,7 @@
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
-                android:layout_margin="10dp"
+                android:layout_margin="4dp"
                 android:background="@drawable/bg_azkary">
 
                 <TextView
@@ -133,7 +167,7 @@
                 android:layout_height="100dp"
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/rlAzkarElMoslem"
-                android:layout_margin="10dp"
+                android:layout_margin="4dp"
                 android:background="@drawable/bg_werd">
 
                 <TextView
@@ -151,7 +185,7 @@
                 android:layout_height="100dp"
                 android:layout_alignParentEnd="true"
                 android:layout_below="@id/rlAzkary"
-                android:layout_margin="10dp"
+                android:layout_margin="4dp"
                 android:background="@drawable/bg_settings">
 
                 <TextView
@@ -170,7 +204,7 @@
                 android:layout_height="100dp"
                 android:layout_below="@id/rlSettings"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
+                android:layout_margin="4dp"
                 android:background="@drawable/bg_sebha">
 
                 <TextView
@@ -187,9 +221,11 @@
             android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+            ads:adUnitId="ca-app-pub-1058946254502124/5222190021" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

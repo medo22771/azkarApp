@@ -40,6 +40,7 @@ public class WerdMohasbaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         GeneralMethods.checkTheme(this);
         setContentView(R.layout.activity_werd_mohasba);
+        GeneralMethods.changeActivityFont(this);
         sharedPrefManager = SharedPrefManager.getInstance().doStuff(this);
         initViews();
         initAdMob();
@@ -94,15 +95,14 @@ public class WerdMohasbaActivity extends AppCompatActivity {
 
 
     private void resetData() {
-        dailyTasks = GeneralMethods.getDefaultData(this);
-        adapter.notifyDataSetChanged();
+        adapter.setData(GeneralMethods.getDefaultWerdMohasbaData(this));
     }
 
     private void calculateRate() {
         ProgressDialog progressDialog = GeneralMethods.show_progress_dialoug(this, "جاري احتساب الورد", false);
         String totalProgres = calculateTasks();
         progressDialog.dismiss();
-        GeneralMethods.show_alert_dialoug(this, totalProgres, "إجمالي ورد المحاسبة", true, "حسنا", "", null, null);
+        GeneralMethods.show_alert_dialoug(this, totalProgres, "", true, "حسنا", "", null, null);
 
     }
 
@@ -110,13 +110,12 @@ public class WerdMohasbaActivity extends AppCompatActivity {
     private void initAdMob() {
         MobileAds.initialize(this);
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-1058946254502124/3991378142");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
-                finish();
             }
 
             @Override
@@ -144,30 +143,12 @@ public class WerdMohasbaActivity extends AppCompatActivity {
 
     private String calculateTasks() {
         ArrayList<DailyTask> tasks = adapter.getDailyTasks();
-        int totalSalah = 91, totalZekr = 42, totalQour2an = 7, totalSeyam = 2;
-        int salah = 0, zekr = 0, qor2an = 0, seyam = 0;
+        String ratingTaskString = "";
         for (DailyTask task : tasks) {
-            switch (task.getType()) {
-                case Constants.CellsType.TYPE_SALAH:
-                    salah += task.getMarkedDays();
-                    break;
-                case Constants.CellsType.TYPE_ZEKR:
-                    zekr += task.getMarkedDays();
-                    break;
-                case Constants.CellsType.TYPE_QOUR2AN:
-                    qor2an += task.getMarkedDays();
-                    break;
-                case Constants.CellsType.TYPE_SEYAM:
-                    seyam += task.getMarkedDays();
-                    break;
-            }
+          ratingTaskString+=task.getTaskName()+" : "+task.getMarkedDays()+" / "+ 7+"\n";
         }
 
-        return String.format("%s : %s/%s\n%s : %s/%s\n%s : %s/%s\n%s : %s/%s\n",
-                "الصلوات المقامة", "" + salah, "" + totalSalah,
-                "تلاوة الأذكار", "" + zekr, "" + totalZekr
-                , "تلاوة القرءان", "" + qor2an, "" + totalQour2an
-                , "الصيام", "" + seyam, "" + totalSeyam);
+        return ratingTaskString;
     }
 
 }

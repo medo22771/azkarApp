@@ -159,6 +159,8 @@ public class WerdMohasbaAdapter extends RecyclerView.Adapter<WerdMohasbaAdapter.
         return dailyTasks.size();
     }
 
+    public void setData(ArrayList<DailyTask> tasks){this.dailyTasks=tasks;
+    notifyDataSetChanged();}
 
     class RowHolder extends RecyclerView.ViewHolder {
 

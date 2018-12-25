@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:textDirection="rtl">
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="إختر حجم الخط"
+        android:textColor="?colorPrimaryDark" />
+
+    <RadioGroup
+        android:id="@+id/rgSizes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
+
+        <RadioButton
+            android:textSize="20sp"
+            android:id="@+id/rbSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:text="@string/besmallah"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:textSize="24sp"
+            android:id="@+id/rbMedium"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:text="@string/besmallah"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/rbLarge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:text="@string/besmallah"
+            android:textColor="@color/black"
+            android:textSize="34sp" />
+
+    </RadioGroup>
+</LinearLayout>

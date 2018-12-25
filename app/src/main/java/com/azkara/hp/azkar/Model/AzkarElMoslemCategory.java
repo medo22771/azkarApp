@@ -1,8 +1,8 @@
 package com.azkara.hp.azkar.Model;
 
 public class AzkarElMoslemCategory {
-    public int id ;
-    public String title;
+    private int id;
+    private String title;
 
     public AzkarElMoslemCategory() {
     }

@@ -15,7 +15,6 @@ import com.azkara.hp.azkar.Util.Constants;
 import com.azkara.hp.azkar.Util.GeneralMethods;
 
 public class ChangeThemeActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView btnSave;
     private ImageView btnBack;
     private AppCompatRadioButton radioStyle1, radioStyle2, radioStyle3, radioStyle4;
     private SharedPrefManager prefManager;
@@ -28,6 +27,7 @@ public class ChangeThemeActivity extends AppCompatActivity implements View.OnCli
         selectedTheme = prefManager.getThemeColor();
         GeneralMethods.checkTheme(this);
         setContentView(R.layout.activity_change_theme);
+        GeneralMethods.changeActivityFont(this);
         initViews();
         selectCurrentTheme();
     }
@@ -35,14 +35,12 @@ public class ChangeThemeActivity extends AppCompatActivity implements View.OnCli
 
     private void initViews() {
         btnBack = findViewById(R.id.btnBack);
-        btnSave = findViewById(R.id.btnSave);
         radioStyle1 = findViewById(R.id.radioStyle1);
         radioStyle2 = findViewById(R.id.radioStyle2);
         radioStyle3 = findViewById(R.id.radioStyle3);
         radioStyle4 = findViewById(R.id.radioStyle4);
 
         btnBack.setOnClickListener(this);
-        btnSave.setOnClickListener(this);
         radioStyle1.setOnClickListener(this);
         radioStyle2.setOnClickListener(this);
         radioStyle3.setOnClickListener(this);
@@ -66,24 +64,29 @@ public class ChangeThemeActivity extends AppCompatActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.radioStyle1:
                 selectedTheme = Constants.ConstantsValues.LightTheme;
+                saveAndApplyTheme();
                 break;
             case R.id.radioStyle2:
                 selectedTheme = Constants.ConstantsValues.DarkTheme;
+                saveAndApplyTheme();
                 break;
             case R.id.radioStyle3:
                 selectedTheme = Constants.ConstantsValues.GreenTheme;
+                saveAndApplyTheme();
                 break;
             case R.id.radioStyle4:
                 selectedTheme = Constants.ConstantsValues.PinkTheme;
+                saveAndApplyTheme();
                 break;
             case R.id.btnBack:
                 finish();
                 break;
-            case R.id.btnSave:
-                prefManager.setThemeColor(selectedTheme);
-                startActivity(new Intent(ChangeThemeActivity.this, HomeScreenActivity.class));
-                finish();
-                break;
         }
+    }
+
+    private void saveAndApplyTheme(){
+        prefManager.setThemeColor(selectedTheme);
+        startActivity(new Intent(ChangeThemeActivity.this, HomeScreenActivity.class));
+        finish();
     }
 }

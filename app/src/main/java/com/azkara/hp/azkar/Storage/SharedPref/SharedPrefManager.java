@@ -13,6 +13,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
+
+import static com.azkara.hp.azkar.Util.Constants.ConstantsValues.LargeFont;
 
 /**
  * Created by NaderNabil216@gmail.com on 7/16/2018.
@@ -39,13 +42,23 @@ public class SharedPrefManager {
         return ourInstance;
     }
 
-    public void setAlarmManagerRepeatTime(Long repeatTime) {
-        editor.putLong(Constants.SharedPreferencesTags.AlarmManagerTime, repeatTime);
+    public void setAlarmManagerRepeatTime(int repeatTime) {
+        editor.putInt(Constants.SharedPreferencesTags.AlarmManagerTime, repeatTime);
         editor.apply();
     }
 
-    public Long getAlarmManagerRepeatTime() {
-        return preferences.getLong(Constants.SharedPreferencesTags.AlarmManagerTime, Constants.ConstantsValues.NoRepeat);
+    public int getAlarmManagerRepeatTime() {
+        return preferences.getInt(Constants.SharedPreferencesTags.AlarmManagerTime, Constants.ConstantsValues.NoRepeat);
+    }
+
+    public void setOverLayCalendar(Calendar overLayCalendar) {
+        editor.putString(Constants.SharedPreferencesTags.OverlayCalendar, new Gson().toJson(overLayCalendar));
+        editor.apply();
+    }
+
+    public Calendar getOverlayCalendar() {
+        String calendarString = preferences.getString(Constants.SharedPreferencesTags.OverlayCalendar, "");
+        return calendarString.isEmpty() ? Calendar.getInstance() : new Gson().fromJson(calendarString, Calendar.class);
     }
 
     public void setCellsData(ArrayList<DailyTask> cellsData) {
@@ -62,7 +75,7 @@ public class SharedPrefManager {
         dataJson = preferences.getString(Constants.SharedPreferencesTags.CellsData, "");
         data = gson.fromJson(dataJson, type);
         if (data == null || data.isEmpty()) {
-            data = GeneralMethods.getDefaultData(context);
+            data = GeneralMethods.getDefaultWerdMohasbaData(context);
             return data;
         } else {
             return data;
@@ -100,7 +113,7 @@ public class SharedPrefManager {
         }
     }
 
-    public ArrayList<Azkary> getAzkaryData() {
+    public ArrayList<Azkary> getAzkaryData(Context context) {
         String dataJson = "";
         ArrayList<Azkary> data;
         Gson gson = new Gson();
@@ -109,7 +122,7 @@ public class SharedPrefManager {
         dataJson = preferences.getString(Constants.SharedPreferencesTags.Azkary, "");
         data = gson.fromJson(dataJson, type);
         if (data == null || data.isEmpty()) {
-            data = new ArrayList<>();
+            data = GeneralMethods.getDefaultAzkaryData(context);
             return data;
         } else {
             return data;
@@ -169,22 +182,107 @@ public class SharedPrefManager {
         return preferences.getInt(Constants.SharedPreferencesTags.SebhaCount, 33);
     }
 
-    public void setSebhaVibrate(boolean isVibrate){
+    public void setSebhaVibrate(boolean isVibrate) {
         editor.putBoolean(Constants.SharedPreferencesTags.SebhaVibrate, isVibrate);
         editor.apply();
     }
 
-    public boolean getSebhaVibrate(){
-        return preferences.getBoolean(Constants.SharedPreferencesTags.SebhaVibrate,false);
+    public boolean getSebhaVibrate() {
+        return preferences.getBoolean(Constants.SharedPreferencesTags.SebhaVibrate, false);
     }
 
-    public void setZekrDisappears (boolean canDisappears){
+    public void setAzkarVibrate(boolean isVibrate) {
+        editor.putBoolean(Constants.SharedPreferencesTags.AzkarVibrate, isVibrate);
+        editor.apply();
+    }
+
+    public boolean getAzkarVibrate() {
+        return preferences.getBoolean(Constants.SharedPreferencesTags.AzkarVibrate, false);
+    }
+
+    public void setZekrDisappears(boolean canDisappears) {
         editor.putBoolean(Constants.SharedPreferencesTags.ZekrDisappear, canDisappears);
         editor.apply();
     }
 
-    public boolean canDisappears(){
-        return preferences.getBoolean(Constants.SharedPreferencesTags.ZekrDisappear,true);
+    public boolean canDisappears() {
+        return preferences.getBoolean(Constants.SharedPreferencesTags.ZekrDisappear, true);
+    }
+
+
+    public void setAzkarElMoslemFontSize(int size) {
+        editor.putInt(Constants.SharedPreferencesTags.AzkarElMoslemFontSize, size);
+        editor.apply();
+    }
+
+    public void setAzkaryFontSize(int size) {
+        editor.putInt(Constants.SharedPreferencesTags.AzkaryFontSize, size);
+        editor.apply();
+    }
+
+
+    public void setFontFamily(int number) {
+        editor.putInt(Constants.SharedPreferencesTags.SelectedFont, number);
+        editor.apply();
+    }
+
+    public int getAzkarElMoslemFontSize() {
+        return preferences.getInt(Constants.SharedPreferencesTags.AzkarElMoslemFontSize, LargeFont);
+    }
+
+    public int getAzkaryFontSize() {
+        return preferences.getInt(Constants.SharedPreferencesTags.AzkaryFontSize, LargeFont);
+    }
+
+    public int getFontFamily() {
+        return preferences.getInt(Constants.SharedPreferencesTags.SelectedFont, 1);
+    }
+
+    public void setAzkarSabahTime(Calendar calendar) {
+        editor.putString(Constants.SharedPreferencesTags.AzkarSabahTime, new Gson().toJson(calendar));
+        editor.apply();
+    }
+
+    public void setAzkarMesaaTime(Calendar calendar) {
+        editor.putString(Constants.SharedPreferencesTags.AzkarMasaaTime, new Gson().toJson(calendar));
+        editor.apply();
+    }
+
+    public void setAzkarNoomTime(Calendar calendar) {
+        editor.putString(Constants.SharedPreferencesTags.AzkarNoomTime, new Gson().toJson(calendar));
+        editor.apply();
+    }
+
+    public Calendar getAzkarSabahHour() {
+        Calendar defaultCalendar = Calendar.getInstance();
+        defaultCalendar.set(Calendar.HOUR_OF_DAY, 5);
+        defaultCalendar.set(Calendar.MINUTE, 0);
+        defaultCalendar.set(Calendar.SECOND, 0);
+        String jsonCalendar = preferences.getString(Constants.SharedPreferencesTags.AzkarSabahTime, "");
+        return jsonCalendar.isEmpty() ? defaultCalendar : new Gson().fromJson(jsonCalendar, Calendar.class);
+    }
+
+    public Calendar getAzkarMesaaHour() {
+        Calendar defaultCalendar = Calendar.getInstance();
+        defaultCalendar.set(Calendar.HOUR_OF_DAY, 17);
+        defaultCalendar.set(Calendar.MINUTE, 0);
+        defaultCalendar.set(Calendar.SECOND, 0);
+        String jsonCalendar = preferences.getString(Constants.SharedPreferencesTags.AzkarMasaaTime, "");
+        return jsonCalendar.isEmpty() ? defaultCalendar : new Gson().fromJson(jsonCalendar, Calendar.class);
+    }
+
+    public Calendar getAzkarNoomHour() {
+        Calendar defaultCalendar = Calendar.getInstance();
+        defaultCalendar.set(Calendar.HOUR_OF_DAY, 22);
+        defaultCalendar.set(Calendar.MINUTE, 0);
+        defaultCalendar.set(Calendar.SECOND, 0);
+        String jsonCalendar = preferences.getString(Constants.SharedPreferencesTags.AzkarNoomTime, "");
+        return jsonCalendar.isEmpty() ? defaultCalendar : new Gson().fromJson(jsonCalendar, Calendar.class);
+    }
+
+    public boolean isSabahTimeDefault(){
+        String zekrTime = preferences.getString(Constants.SharedPreferencesTags.AzkarNoomTime, "");
+        return zekrTime.isEmpty();
     }
 
 }

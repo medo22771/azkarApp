@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.azkara.hp.azkar.Model.Azkary;
 import com.azkara.hp.azkar.R;
+import com.azkara.hp.azkar.Util.GeneralMethods;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,8 @@ public class AzkaryAdapter extends RecyclerView.Adapter<AzkaryAdapter.Holder> {
                 azkary.setChecked(isChecked);
             }
         });
+
+        GeneralMethods.changeViewFont(holder.itemView);
     }
 
     @Override

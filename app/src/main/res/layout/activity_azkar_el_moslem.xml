@@ -6,7 +6,32 @@
     android:layoutDirection="rtl"
     android:orientation="vertical"
     android:textDirection="rtl"
+    android:background="@drawable/bg_window"
     tools:context=".Ui.Azkar_Muslem_Screen.AzkarElMoslemActivity">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?colorPrimary">
+
+        <TextView
+            android:text="أذكار المسلم"
+            android:id="@+id/tvTitle"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:src="@drawable/ic_back"
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp" />
+    </RelativeLayout>
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
@@ -16,7 +41,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+        ads:adUnitId="ca-app-pub-1058946254502124/5222190021" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvAzkarCategories"

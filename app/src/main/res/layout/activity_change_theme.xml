@@ -6,6 +6,7 @@
     android:layoutDirection="rtl"
     android:orientation="vertical"
     android:textDirection="rtl"
+    android:background="@drawable/bg_window"
     tools:context=".Ui.ChangeThemeScreen.ChangeThemeActivity">
 
     <LinearLayout
@@ -16,7 +17,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary">
+            android:background="?colorPrimary">
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Title"
@@ -27,24 +28,14 @@
                 android:textColor="@color/white" />
 
             <ImageView
+                android:src="@drawable/ic_back"
                 android:id="@+id/btnBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp" />
 
-            <TextView
-                android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:padding="8dp"
-                android:text="حفط العديلات"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
         </RelativeLayout>
 
         <RelativeLayout

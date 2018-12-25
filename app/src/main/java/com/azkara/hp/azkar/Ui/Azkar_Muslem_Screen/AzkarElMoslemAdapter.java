@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.azkara.hp.azkar.Model.AzkarElMoslemCategory;
 import com.azkara.hp.azkar.R;
 import com.azkara.hp.azkar.Ui.Azkar_Muslem_Content_Screen.AzkarElMoslemContentActivity;
+import com.azkara.hp.azkar.Util.Constants;
+import com.azkara.hp.azkar.Util.GeneralMethods;
 
 import java.util.ArrayList;
 
@@ -33,16 +35,21 @@ public class AzkarElMoslemAdapter extends RecyclerView.Adapter<AzkarElMoslemAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ZekrTitle holder, int position) {
-        AzkarElMoslemCategory category = categories.get(position);
+    public void onBindViewHolder(@NonNull ZekrTitle holder, final int position) {
+        final AzkarElMoslemCategory category = categories.get(position);
         // TODO: 8/17/2018 change backGround
         holder.tvZekrTitle.setText(category.getTitle());
         holder.itemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, AzkarElMoslemContentActivity.class));
+                Intent intent = new Intent(context, AzkarElMoslemContentActivity.class);
+                intent.putExtra(Constants.IntentStrings.CategoryId,category.getId());
+                intent.putExtra(Constants.IntentStrings.CategoryName,category.getTitle());
+                intent.putExtra(Constants.IntentStrings.CategoryPosition,position);
+                context.startActivity(intent);
             }
         });
+        GeneralMethods.changeViewFont(holder.itemView);
     }
 
     @Override

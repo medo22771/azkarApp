@@ -1,14 +1,21 @@
 package com.azkara.hp.azkar.Service;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,11 +26,15 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.azkara.hp.azkar.R;
 import com.azkara.hp.azkar.Storage.SharedPref.SharedPrefManager;
+import com.azkara.hp.azkar.Ui.Home_Screen.HomeScreenActivity;
+import com.azkara.hp.azkar.Ui.Splash_Screen.SplashScreenActivity;
 import com.azkara.hp.azkar.Util.Constants;
 import com.azkara.hp.azkar.Util.GeneralMethods;
+import com.azkara.hp.azkar.Util.NotificationHelperUtils;
 import com.easyandroidanimations.library.Animation;
 import com.easyandroidanimations.library.AnimationListener;
 import com.easyandroidanimations.library.ExplodeAnimation;
@@ -51,22 +62,47 @@ public class FloatingWidgetService extends Service {
     @SuppressLint({"ClickableViewAccessibility", "InflateParams", "RtlHardcoded"})
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        checkPermissions();
+        return super.onStartCommand(intent, flags, startId);
+    }
 
+    private void checkPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                new NotificationHelperUtils(this).buildNotification("تطبيق أذكار المسلم", "برجاء إعطاء جميع الصلاحيات للبرنامج لعرض الاذكار على الشاشة الخارجية");
+                stopSelf();
+            } else {
+                drawWindow();
+            }
+        } else {
+           drawWindow();
+        }
+
+    }
+
+    private void drawWindow() {
         zekr_text = GeneralMethods.getRundomZekr(this);
-
+        Log.e("service", "received");
         if (!zekr_text.isEmpty()) {
 
-
+            Log.e("service", "zekr not empty");
             if (mOverlayView == null) {
-
+                Log.e("service", "view is null");
                 mOverlayView = LayoutInflater.from(this).inflate(R.layout.overlay_layout, null);
 
+                int LAYOUT_FLAG;
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    LAYOUT_FLAG = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+                } else {
+                    LAYOUT_FLAG = WindowManager.LayoutParams.TYPE_PHONE;
+                }
 
                 final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                         WindowManager.LayoutParams.WRAP_CONTENT,
                         WindowManager.LayoutParams.WRAP_CONTENT,
-                        WindowManager.LayoutParams.TYPE_PHONE,
-                        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                        LAYOUT_FLAG,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                         PixelFormat.TRANSLUCENT);
 
 
@@ -114,6 +150,13 @@ public class FloatingWidgetService extends Service {
                         //To get the accurate middle of the screen we subtract the width of the floating widget.
                         mWidth = size.x - width;
 
+                    }
+                });
+
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(FloatingWidgetService.this, "clicked", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -190,13 +233,12 @@ public class FloatingWidgetService extends Service {
                     public void run() {
                         exitAnimation();
                     }
-                }, 50000);
+                }, 5000);
+            }else {
+                Log.e("service", "view not null");
             }
 
         }
-
-        return super.onStartCommand(intent, flags, startId);
-
 
     }
 
@@ -212,7 +254,6 @@ public class FloatingWidgetService extends Service {
                 }
             }
         });
-
     }
 
     public void exitAnimation() {
@@ -230,7 +271,6 @@ public class FloatingWidgetService extends Service {
                     .animate();
         }
     }
-
 
     @Override
     public void onCreate() {
