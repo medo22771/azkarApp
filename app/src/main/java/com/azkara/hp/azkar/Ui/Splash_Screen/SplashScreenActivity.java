@@ -34,21 +34,21 @@ public class SplashScreenActivity extends AppCompatActivity {
         checkFileVersion();
         checkPermissions();
 
-        ActivityCompat.requestPermissions(this, new String[]
-                {
-                        Manifest.permission.WAKE_LOCK,
-                        Manifest.permission.VIBRATE,
-                        Manifest.permission.SYSTEM_ALERT_WINDOW
-                }, 100
-        );
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
-                (AppOpsManager.OPSTR_SYSTEM_ALERT_WINDOW.equals("android:system_alert_window") &&
-                true)
-                )
-        {
-            Log.i("Gohary", "Done");
-        }
+//        ActivityCompat.requestPermissions(this, new String[]
+//                {
+//                        Manifest.permission.WAKE_LOCK,
+//                        Manifest.permission.VIBRATE,
+//                        Manifest.permission.SYSTEM_ALERT_WINDOW
+//                }, 100
+//        );
+//
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+//                (AppOpsManager.OPSTR_SYSTEM_ALERT_WINDOW.equals("android:system_alert_window") &&
+//                true)
+//                )
+//        {
+//            Log.i("Gohary", "Done");
+//        }
     }
 
     private void checkPermissions() {

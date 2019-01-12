@@ -1,20 +1,13 @@
-package com.azkara.hp.azkar.Service;
+package com.azkara.hp.azkar.Gohary;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Service;
-import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
 import android.provider.Settings;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -30,8 +23,6 @@ import android.widget.Toast;
 
 import com.azkara.hp.azkar.R;
 import com.azkara.hp.azkar.Storage.SharedPref.SharedPrefManager;
-import com.azkara.hp.azkar.Ui.Home_Screen.HomeScreenActivity;
-import com.azkara.hp.azkar.Ui.Splash_Screen.SplashScreenActivity;
 import com.azkara.hp.azkar.Util.Constants;
 import com.azkara.hp.azkar.Util.GeneralMethods;
 import com.azkara.hp.azkar.Util.NotificationHelperUtils;
@@ -40,54 +31,60 @@ import com.easyandroidanimations.library.AnimationListener;
 import com.easyandroidanimations.library.ExplodeAnimation;
 import com.easyandroidanimations.library.SlideInAnimation;
 
+import androidx.work.ListenableWorker;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
+
+import static android.content.Context.WINDOW_SERVICE;
+
 /**
- * Created by NaderNabil216@gmail.com on 7/10/2018.
+ * Created by Gohary on 06-Jan-19.
  */
-public class FloatingWidgetService extends Service {
 
-
+public class FloatingWidgetService extends Worker
+{
     int mWidth;
     TextView textView;
     private WindowManager mWindowManager;
     private View mOverlayView;
     private String zekr_text;
+    private Context context;
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public FloatingWidgetService(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+        super(context, workerParams);
+        this.context = context;
     }
 
-
-    @SuppressLint({"ClickableViewAccessibility", "InflateParams", "RtlHardcoded"})
+    @NonNull
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public Result doWork()
+    {
         checkPermissions();
-        return super.onStartCommand(intent, flags, startId);
+        return Result.success();
     }
 
     private void checkPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(this)) {
-                new NotificationHelperUtils(this).buildNotification("تطبيق أذكار المسلم", "برجاء إعطاء جميع الصلاحيات للبرنامج لعرض الاذكار على الشاشة الخارجية");
-                stopSelf();
+            if (!Settings.canDrawOverlays(context)) {
+                new NotificationHelperUtils(context).buildNotification("تطبيق أذكار المسلم", "برجاء إعطاء جميع الصلاحيات للبرنامج لعرض الاذكار على الشاشة الخارجية");
+                return;
             } else {
                 drawWindow();
             }
         } else {
-           drawWindow();
+            drawWindow();
         }
     }
 
     private void drawWindow() {
-        zekr_text = GeneralMethods.getRundomZekr(this);
+        zekr_text = GeneralMethods.getRundomZekr(context);
         Log.e("service", "received");
         if (!zekr_text.isEmpty()) {
 
             Log.e("service", "zekr not empty");
             if (mOverlayView == null) {
                 Log.e("service", "view is null");
-                mOverlayView = LayoutInflater.from(this).inflate(R.layout.overlay_layout, null);
+                mOverlayView = LayoutInflater.from(context).inflate(R.layout.overlay_layout, null);
 
                 int LAYOUT_FLAG;
 
@@ -111,7 +108,7 @@ public class FloatingWidgetService extends Service {
                 params.y = 100;
 
 
-                mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+                mWindowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
                 assert mWindowManager != null;
                 mWindowManager.addView(mOverlayView, params);
 
@@ -122,7 +119,7 @@ public class FloatingWidgetService extends Service {
                 textView = mOverlayView.findViewById(R.id.txt_overlay);
                 textView.setText(zekr_text);
 
-                switch (SharedPrefManager.getInstance().doStuff(this).getThemeColor()) {
+                switch (SharedPrefManager.getInstance().doStuff(context).getThemeColor()) {
                     case Constants.ConstantsValues.LightTheme:
                         textView.setBackgroundResource(R.drawable.light_round_bg);
                         break;
@@ -152,12 +149,12 @@ public class FloatingWidgetService extends Service {
                     }
                 });
 
-                textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(FloatingWidgetService.this, "clicked", Toast.LENGTH_SHORT).show();
-                    }
-                });
+//                textView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(FloatingWidgetService.this, "clicked", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
                 textView.setOnTouchListener(new View.OnTouchListener() {
                     private int initialX;
@@ -264,24 +261,10 @@ public class FloatingWidgetService extends Service {
                     .setListener(new AnimationListener() {
                         @Override
                         public void onAnimationEnd(com.easyandroidanimations.library.Animation animation) {
-                            stopSelf();
+                            return;
                         }
                     })
                     .animate();
         }
     }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        setTheme(R.style.AppTheme);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mOverlayView != null)
-            mWindowManager.removeView(mOverlayView);
-    }
-
 }

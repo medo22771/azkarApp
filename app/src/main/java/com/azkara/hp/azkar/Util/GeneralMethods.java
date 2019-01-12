@@ -36,8 +36,10 @@ import static com.azkara.hp.azkar.Util.Constants.IntentStrings.ZekrType;
 /**
  * Created by NaderNabil216@gmail.com on 7/15/2018.
  */
-public class GeneralMethods {
-    public static void initOverLayZekrAlarm(Context context) {
+public class GeneralMethods
+{
+    public static void initOverLayZekrAlarm(Context context)
+    {
         int repeatTime = SharedPrefManager.getInstance().doStuff(context).getAlarmManagerRepeatTime();
         if (repeatTime != 0) {
             Intent startIntent = new Intent(context, OverLayWindowReceiver.class);
@@ -50,6 +52,7 @@ public class GeneralMethods {
                 }
                 else{
                     alarmManager.set(AlarmManager.RTC_WAKEUP,overLayCalendar.getTimeInMillis(),pendingIntent);
+//                    Calendar.getInstance().getTimeInMillis() + 1000;
                 }
             }
             else{

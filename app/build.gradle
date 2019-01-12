@@ -7,7 +7,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.azkara.hp.azkar"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 27
         versionCode 10
         versionName "10.0"
@@ -58,4 +58,7 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
 
     implementation 'com.intuit.ssp:ssp-android:1.0.5'
+
+    implementation "android.arch.work:work-runtime:1.0.0-beta01"
+
 }
